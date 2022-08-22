@@ -4,22 +4,17 @@
       <v-card class="auth-card">
         <!-- logo -->
         <v-card-title class="d-flex align-center justify-center py-7">
-          <nuxt-link
-            to="/"
-            class="d-flex align-center"
-          >
+          <nuxt-link to="/" class="d-flex align-center">
             <v-img
               :src="require('@/assets/images/logos/logo.svg')"
               max-height="30px"
               max-width="30px"
               alt="logo"
               contain
-              class="me-3 "
+              class="me-3"
             ></v-img>
 
-            <h2 class="text-2xl font-weight-semibold">
-              Materio
-            </h2>
+            <h2 class="text-2xl font-weight-semibold">Materio</h2>
           </nuxt-link>
         </v-card-title>
 
@@ -51,33 +46,22 @@
               :type="isPasswordVisible ? 'text' : 'password'"
               label="Password"
               placeholder="············"
-              :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
+              :append-icon="
+                isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline
+              "
               hide-details
               @click:append="isPasswordVisible = !isPasswordVisible"
             ></v-text-field>
 
             <div class="d-flex align-center justify-space-between flex-wrap">
-              <v-checkbox
-                label="Remember Me"
-                hide-details
-                class="me-3 mt-1"
-              >
+              <v-checkbox label="Remember Me" hide-details class="me-3 mt-1">
               </v-checkbox>
 
               <!-- forgot link -->
-              <a
-                href="javascript:void(0)"
-                class="mt-1"
-              >
-                Forgot Password?
-              </a>
+              <a href="javascript:void(0)" class="mt-1"> Forgot Password? </a>
             </div>
 
-            <v-btn
-              block
-              color="primary"
-              class="mt-6"
-            >
+            <v-btn block color="primary" class="mt-6" @click="login">
               Login
             </v-btn>
           </v-form>
@@ -85,12 +69,8 @@
 
         <!-- create new account  -->
         <v-card-text class="d-flex align-center justify-center flex-wrap mt-2">
-          <span class="me-2">
-            New on our platform?
-          </span>
-          <nuxt-link to="/register">
-            Create an account
-          </nuxt-link>
+          <span class="me-2"> New on our platform? </span>
+          <nuxt-link to="/register"> Create an account </nuxt-link>
         </v-card-text>
 
         <!-- divider -->
@@ -102,13 +82,10 @@
 
         <!-- social links -->
         <v-card-actions class="d-flex justify-center">
-          <v-btn
-            v-for="link in socialLink"
-            :key="link.icon"
-            icon
-            class="ms-1"
-          >
-            <v-icon :color="$vuetify.theme.dark ? link.colorInDark : link.color">
+          <v-btn v-for="link in socialLink" :key="link.icon" icon class="ms-1">
+            <v-icon
+              :color="$vuetify.theme.dark ? link.colorInDark : link.color"
+            >
               {{ link.icon }}
             </v-icon>
           </v-btn>
@@ -120,8 +97,12 @@
     <img
       class="auth-mask-bg"
       height="173"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
+      :src="
+        require(`@/assets/images/misc/mask-${
+          $vuetify.theme.dark ? 'dark' : 'light'
+        }.png`)
+      "
+    />
 
     <!-- tree -->
     <v-img
@@ -143,48 +124,69 @@
 
 <script>
 // eslint-disable-next-line object-curly-newline
-import { mdiFacebook, mdiTwitter, mdiGithub, mdiGoogle, mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
+import {
+  mdiFacebook,
+  mdiTwitter,
+  mdiGithub,
+  mdiGoogle,
+  mdiEyeOutline,
+  mdiEyeOffOutline,
+} from '@mdi/js'
 import { ref } from '@vue/composition-api'
 
 export default {
-  setup() {
-    const isPasswordVisible = ref(false)
-    const email = ref('')
-    const password = ref('')
-    const socialLink = [
-      {
-        icon: mdiFacebook,
-        color: '#4267b2',
-        colorInDark: '#4267b2',
-      },
-      {
-        icon: mdiTwitter,
-        color: '#1da1f2',
-        colorInDark: '#1da1f2',
-      },
-      {
-        icon: mdiGithub,
-        color: '#272727',
-        colorInDark: '#fff',
-      },
-      {
-        icon: mdiGoogle,
-        color: '#db4437',
-        colorInDark: '#db4437',
-      },
-    ]
-
+  layout: 'auth',
+  auth: 'guest',
+  data() {
     return {
-      isPasswordVisible,
-      email,
-      password,
-      socialLink,
+      isPasswordVisible: false,
+      email: '',
+      password: '',
+      socialLink: [
+        {
+          icon: mdiFacebook,
+          color: '#4267b2',
+          colorInDark: '#4267b2',
+        },
+        {
+          icon: mdiTwitter,
+          color: '#1da1f2',
+          colorInDark: '#1da1f2',
+        },
+        {
+          icon: mdiGithub,
+          color: '#272727',
+          colorInDark: '#fff',
+        },
+        {
+          icon: mdiGoogle,
+          color: '#db4437',
+          colorInDark: '#db4437',
+        },
+      ],
 
       icons: {
         mdiEyeOutline,
         mdiEyeOffOutline,
       },
     }
+  },
+
+  mounted(){
+    console.log(process.env.KEYCLOAK_API_URL)
+  },
+
+  methods: {
+    async login() {
+      try {
+        const response = await this.$auth.loginWith('keycloak')
+        // eslint-ignore-next-line
+        console.log(response)
+      } catch (err) {
+        // eslint-ignore-next-line
+        console.log(err)
+      }
+    },
   },
 }
 </script>

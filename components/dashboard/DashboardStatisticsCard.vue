@@ -61,8 +61,9 @@
 import { mdiAccountOutline, mdiCurrencyUsd, mdiTrendingUp, mdiDotsVertical, mdiLabelOutline } from '@mdi/js'
 
 export default {
-  setup() {
-    const statisticsData = [
+  data() {
+    return{
+    statisticsData : [
       {
         title: 'Sales',
         total: '245k',
@@ -79,20 +80,7 @@ export default {
         title: 'Revenue',
         total: '$88k',
       },
-    ]
-
-    const resolveStatisticsIconVariation = data => {
-      if (data === 'Sales') return { icon: mdiTrendingUp, color: 'primary' }
-      if (data === 'Customers') return { icon: mdiAccountOutline, color: 'success' }
-      if (data === 'Product') return { icon: mdiLabelOutline, color: 'warning' }
-      if (data === 'Revenue') return { icon: mdiCurrencyUsd, color: 'info' }
-
-      return { icon: mdiAccountOutline, color: 'success' }
-    }
-
-    return {
-      statisticsData,
-      resolveStatisticsIconVariation,
+    ],
 
       // icons
       icons: {
@@ -104,5 +92,16 @@ export default {
       },
     }
   },
+
+  methods:{
+    resolveStatisticsIconVariation (data){
+      if (data === 'Sales') return { icon: mdiTrendingUp, color: 'primary' }
+      if (data === 'Customers') return { icon: mdiAccountOutline, color: 'success' }
+      if (data === 'Product') return { icon: mdiLabelOutline, color: 'warning' }
+      if (data === 'Revenue') return { icon: mdiCurrencyUsd, color: 'info' }
+
+      return { icon: mdiAccountOutline, color: 'success' }
+    },
+  }
 }
 </script>

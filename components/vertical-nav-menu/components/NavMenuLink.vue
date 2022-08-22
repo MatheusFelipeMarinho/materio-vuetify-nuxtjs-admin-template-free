@@ -33,7 +33,7 @@ export default {
       default: undefined,
     },
   },
-  setup() {
+  data() {
     return {
       alternateIcon: mdiCheckboxBlankCircleOutline,
     }

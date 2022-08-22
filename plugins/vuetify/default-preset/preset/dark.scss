@@ -16,13 +16,20 @@
       }
     }
 
+    .v-main{
+      background-color: #10172a;
+    }
+
+    .v-card{
+      background-color: #1e293b;
+    }
+
     // ————————————————————————————————————
     //* ——— Data table
     // ————————————————————————————————————
     .v-data-table {
       th {
         font-weight: 600;
-        background-color: #3b355a !important;
       }
     }
   }

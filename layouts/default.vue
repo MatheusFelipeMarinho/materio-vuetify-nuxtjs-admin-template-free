@@ -27,15 +27,6 @@
           <v-spacer></v-spacer>
 
           <!-- Right Content -->
-          <a
-            href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free"
-            target="_blank"
-            rel="nofollow"
-          >
-            <v-icon class="ms-6 me-4">
-              {{ icons.mdiGithub }}
-            </v-icon>
-          </a>
           <theme-switcher></theme-switcher>
           <v-btn
             icon
@@ -65,39 +56,11 @@
       height="56"
       class="px-0"
     >
-      <div class="boxed-container w-full">
-        <div class="mx-6 d-flex justify-space-between">
-          <span>
-            &copy; 2021 <a
-              href="https://themeselection.com"
-              class="text-decoration-none"
-              target="_blank"
-            >ThemeSelection</a></span>
-          <span class="d-sm-inline d-none">
-            <a
-              href="https://themeselection.com/products/category/download-free-admin-templates/"
-              target="_blank"
-              class="me-6 text--secondary text-decoration-none"
-            >Freebies</a>
-            <a
-              href="https://themeselection.com/blog/"
-              target="_blank"
-              class="me-6 text--secondary text-decoration-none"
-            >Blog</a>
-            <a
-              href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free/blob/main/LICENSE"
-              target="_blank"
-              class="text--secondary text-decoration-none"
-            >MIT Licence</a>
-          </span>
-        </div>
-      </div>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import { ref } from '@vue/composition-api'
 import { mdiMagnify, mdiBellOutline, mdiGithub } from '@mdi/js'
 import VerticalNavMenu from '@/components/vertical-nav-menu/VerticalNavMenu.vue'
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
@@ -109,11 +72,10 @@ export default {
     ThemeSwitcher,
     AppBarUserMenu,
   },
-  setup() {
-    const isDrawerOpen = ref(null)
+  data() {
 
     return {
-      isDrawerOpen,
+      isDrawerOpen: true,
 
       // Icons
       icons: {
@@ -127,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-app-bar ::v-deep {
+.v-app-bar {
   .v-toolbar__content {
     padding: 0;
 

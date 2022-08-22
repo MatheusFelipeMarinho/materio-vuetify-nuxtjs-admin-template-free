@@ -166,7 +166,7 @@ import {
 } from '@mdi/js'
 
 export default {
-  setup() {
+  data() {
     return {
       icons: {
         mdiAccountOutline,

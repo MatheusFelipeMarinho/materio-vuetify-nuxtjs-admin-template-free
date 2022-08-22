@@ -265,9 +265,10 @@ $material-dark: map-deep-merge(
   $material-dark,
   (
     // ! Value of `map-deep-get($material-dark, 'cards')`
-      'app-bar': #312d4b,
-    'background': #28243d,
-    'cards': #312d4b,
+    'app-bar': #10172a,
+    'background': #10172a,
+    'body': #10172a,
+    'cards': #10172a,
     'calendar': (
       // ! Value of `map-deep-get($material-dark, 'cards')`
         'background-color': #312d4b,
@@ -325,7 +326,7 @@ $material-dark: map-deep-merge(
         'indeterminateTime': #28243d
     ),
     // ! Value of `map-deep-get($material-dark, 'cards')`
-      'bg-color': #312d4b,
+      'bg-color': #10172a,
     // * New
       'primary-shade': $primary-shade--dark,
     'shadow-color': $shadow-color--dark

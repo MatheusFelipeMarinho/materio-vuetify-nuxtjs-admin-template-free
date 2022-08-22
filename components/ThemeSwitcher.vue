@@ -13,7 +13,7 @@
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js'
 
 export default {
-  setup() {
+  data() {
     return {
       icons: {
         mdiWeatherNight,
@@ -21,6 +21,12 @@ export default {
       },
     }
   },
+
+  methods:{
+    select(value){
+      console.log(value)
+    }
+  }
 }
 </script>
 
